@@ -544,6 +544,8 @@ class GoogleUrl {
         $header[] = "Accept-Language: ".$this->acceptLangage;
 
         $c->HTTPHEADER = $header;
+        $c->CONNECTTIMEOUT = 10;
+        $c->TIMEOUT = 20;
 
         /**=========
          * SET PROXY
