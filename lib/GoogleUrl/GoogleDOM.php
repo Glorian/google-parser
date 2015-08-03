@@ -20,7 +20,7 @@ class GoogleDOM extends DOMDocument{
     /**
      * list of natural nodes
      */
-    const NATURAL_QUERY="//div[@id = 'ires']/ol/descendant::li[@class='g'][not(@id) or @id != 'imagebox_bigimages']";
+    const NATURAL_QUERY="//div[@id = 'ires']/ol/descendant::*[self::div or self::li][@class='g']";
     /**
      * Get natural link (<a> tag) in the natural node context
      */
