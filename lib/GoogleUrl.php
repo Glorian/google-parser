@@ -239,6 +239,11 @@ class GoogleUrl
     protected $enableLr = true;
 
     /**
+     * @var int
+     */
+    protected $timeout = 30;
+
+    /**
      * Main Constructor
      */
     public function __construct()
@@ -377,6 +382,14 @@ class GoogleUrl
         } catch (Exception $e) {
             return $this;
         }
+    }
+
+    /**
+     * @param int $timeout
+     */
+    public function setTimeout($timeout)
+    {
+        $this->timeout = $timeout;
     }
 
     /**
@@ -555,7 +568,7 @@ class GoogleUrl
                 'Accept-Language' => $this->acceptLanguage
             ])
             ->followRedirects(true)
-            ->timeout(30);
+            ->timeout($this->timeout);
 
         // Proxify request
         if ($proxy) {
