@@ -36,9 +36,13 @@ class GoogleLocation
      */
     public function getParam()
     {
-        $encodedCanonical = base64_decode($this->canonical);
+        if (! $this->canonical) {
+            throw new Exception('Canonical name is undefined');
+        }
 
-        return static::UULE_PREFIX . $this->getSecretKey() . $encodedCanonical;
+        return static::UULE_PREFIX
+            . $this->getSecretKey()
+            . base64_decode($this->canonical);
     }
 
     /**
