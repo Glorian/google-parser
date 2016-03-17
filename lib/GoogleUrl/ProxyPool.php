@@ -28,7 +28,7 @@ class ProxyPool implements ProxyAccessAdapter {
      * the delays to use by default if the proxy doesnt have
      * @param array $delays
      */
-    function __construct($delays) {
+    public function __construct($delays) {
         $this->delays = $delays;
     }
 
@@ -37,6 +37,7 @@ class ProxyPool implements ProxyAccessAdapter {
      * Add a proxy. It must be an instance of {@see ProxyDefinition}
      * @param ProxyInterface $p
      * @throws \Exception
+     * @return void
      */
     public function setProxy(ProxyInterface $p){
         
@@ -44,7 +45,7 @@ class ProxyPool implements ProxyAccessAdapter {
             throw new \Exception("ProxyPool::addProxy() first parameter must be an instance of GoogleUrl\Proxy\ProxyObject." . get_class($p) . " used instead.");
         }
         
-        $this->proxys[$p->__toString()] = $p;
+        $this->proxys[(string) $p] = $p;
     }
     
     
@@ -60,6 +61,7 @@ class ProxyPool implements ProxyAccessAdapter {
 
     /**
      * @param ProxyInterface $proxy
+     * @return void
      */
     public function removeProxy(ProxyInterface $proxy) {
     
@@ -106,8 +108,7 @@ class ProxyPool implements ProxyAccessAdapter {
      */
     public function proxyUsed(ProxyInterface $proxy) {
         $string = $proxy->getIp() . ":" . $proxy->getPort();
-        
-        
+
         if(isset($this->proxys[$string])){
            $p = $this->proxys[$string];
            $p->setLastUse(time());

@@ -20,39 +20,39 @@ class GoogleDOM extends DOMDocument{
     /**
      * list of natural nodes
      */
-    const NATURAL_QUERY="//div[@id = 'ires']/ol/descendant::*[self::div or self::li][@class='g']";
+    const NATURAL_QUERY = "//div[@id = 'ires']/div[@id = 'rso']/descendant::*[self::div or self::li][@class='g']";
     /**
      * Get natural link (<a> tag) in the natural node context
      */
-    const NATURAL_LINKS_IN="descendant::h3[@class='r'][1]/a"; 
+    const NATURAL_LINKS_IN = "descendant::h3[@class='r'][1]/a";
     
     
     /**
      * Get adwords nodes
      */
-    const RHS_QUERY_COLUMN="//div[@id = 'rhs']//ol/li[@class='ads-ad']";
+    const RHS_QUERY_COLUMN = "//div[@id = 'rhs']//ol/li[@class='ads-ad']";
     /**
      *
      */
-    const RHS_QUERY_BODY="//div[@id = 'tads']//ol/li[@class='ads-ad']";
+    const RHS_QUERY_BODY = "//div[@id = 'tads']//ol/li[@class='ads-ad']";
     /**
      *
      */
-    const RHS_LINK="descendant::h3/a[@onmousedown]";
+    const RHS_LINK = "descendant::h3/a[@onmousedown]";
     /**
      *
      */
-    const RHS_VISURL="descendant::div[@class='ads-visurl']/cite";
+    const RHS_VISURL = "descendant::div[@class='ads-visurl']/cite";
     /**
      *
      */
-    const RHS_TEXT="descendant::div[@class='ads-creative']";
+    const RHS_TEXT = "descendant::div[@class='ads-creative']";
     
     // we check if there is a form named 'captcha' to detect a bad page
     /**
      *
      */
-    const CAPTCHA_FORM_XPATH="//input[@name='captcha']";
+    const CAPTCHA_FORM_XPATH = "//input[@name='captcha']";
 
     /**
      * @var null
