@@ -427,7 +427,11 @@ class GoogleUrl
      */
     private function param($name)
     {
-        return $this->googleParams[$name];
+        if ($this->hasParam($name)) {
+            return $this->googleParams[$name];
+        }
+
+        return null;
     }
 
     /**
@@ -437,7 +441,7 @@ class GoogleUrl
      */
     private function hasParam($name)
     {
-        return isset($this->googleParams[$name]);
+        return array_key_exists($name, $this->googleParams);
     }
 
     /**
@@ -526,23 +530,20 @@ class GoogleUrl
      * Launch a google Search
      * @param string $searchTerm the string to search. Or if not specified will take the given with ->searchTerm($search)
      * @param SimpleProxyInterface $proxy
-     * @return GoogleDOM the Google DOMDocument
      *
      * @throws CaptchaException google detected us as a bot
      * @throws ConnectionErrorException
      * @throws EmptySearchRequestException
      *
-     * @internal param array $options Options for the query . available options :
-     *                       + proxy : a proxyDefinition item to proxyfy the request
-     *                       +
-     *                       +
-     *
+     * @return GoogleDOM the Google DOMDocument
      */
     public function search($searchTerm = null, SimpleProxyInterface $proxy = null)
     {
-        if ($searchTerm === null && $this->param('q') === '') {
+        if ($searchTerm === null && $this->param('q') === null) {
             throw new EmptySearchRequestException('Nothing to Search');
         }
+
+        $searchTerm = $searchTerm ?: $this->param('q');
 
         // Set search term
         $this->searchTerm($searchTerm);
