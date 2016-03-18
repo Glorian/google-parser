@@ -568,6 +568,7 @@ class GoogleUrl
                 'Accept-Language' => $this->acceptLanguage
             ])
             ->followRedirects(true)
+            ->addOnCurlOption(CURLOPT_IPRESOLVE, CURL_IPRESOLVE_V4)
             ->timeout($this->timeout);
 
         // Proxify request
