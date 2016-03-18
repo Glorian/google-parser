@@ -42,7 +42,7 @@ class GoogleLocation
 
         return static::UULE_PREFIX
             . $this->getSecretKey()
-            . base64_decode($this->canonical);
+            . base64_encode($this->canonical);
     }
 
     /**
